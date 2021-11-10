@@ -17,7 +17,7 @@ const pool = new Pool({
 });
 
 // DATABASE TEST
-describe('The basic database for fruit basket', function () {
+describe('The basic database for fruit_basket', function () {
 
     let fruitDB = FruitB(pool);
 
@@ -32,7 +32,6 @@ describe('The basic database for fruit basket', function () {
 
     it('should get the fruit basket', async function () {
         let b = await fruitDB.findAll('Apple');
-        // let fruitDB = FruitB(pool, ['Apple']);
 
         assert.deepEqual([{fruit_name:'Apple'}], b);
 
@@ -41,7 +40,6 @@ describe('The basic database for fruit basket', function () {
     
     it('should get the quantity of fruit basket', async function () {
         let b = await fruitDB.updateQ('Apple', 2, 2);
-        // let fruitDB = FruitB(pool, ['Apple']);
 
         assert.deepEqual([{quantity: 5, price: 2}], await fruitDB.getQ_Price());
 
@@ -64,15 +62,12 @@ describe('The basic database for fruit basket', function () {
         let b = await fruitDB.findAll('Apple');
 
         await fruitDB.updateQ('Orange', 2, 2.00);
-
         await fruitDB.updateQ('Pear', 2, 5.00);
         await fruitDB.updateQ('Banana', 5, 5.00);
         await fruitDB.updateQ('Banana', 6, 5.00);
         await fruitDB.updateQ('Strawberry', 2, 5.00);
 
         assert.deepEqual({total: '20'}, await fruitDB.sum_Quantity());
-        // assert.deepEqual({total_price: '5.00'}, await fruitDB.total_Price('Pear'));
-
 
     });
 
