@@ -5,4 +5,4 @@ create table fruit_basket (
   price decimal (10,2)
 );
 
-  INSERT INTO fruit_basket(fruit_name, quantity, price)VALUES ('Apple', 3, 2);
+INSERT INTO fruit_basket(fruit_name, quantity, price)VALUES ('Apple', 3, 2);
