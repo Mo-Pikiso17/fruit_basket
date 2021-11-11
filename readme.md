@@ -1,0 +1,1 @@
+[![Build Status](https://app.travis-ci.com/Mo-Pikiso17/fruit_basket.svg?branch=main)](https://app.travis-ci.com/Mo-Pikiso17/fruit_basket)
