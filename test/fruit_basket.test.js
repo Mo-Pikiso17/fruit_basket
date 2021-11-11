@@ -24,7 +24,7 @@ describe('The basic database for fruit_basket', function () {
 
     beforeEach(async function () {
         // clean the tables before each test run
-        await pool.query("delete from fruit_basket");
+        await pool.query("DELETE FROM fruit_basket;");
         // await pool.query("delete from categories;");
         await pool.query("INSERT INTO fruit_basket(fruit_name, quantity, price)VALUES($1, $2, $3)", ['Apple', 3, 2]);
     });
