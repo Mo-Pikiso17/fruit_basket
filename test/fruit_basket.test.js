@@ -77,7 +77,6 @@ describe('The basic database for fruit_basket', function () {
         let b = await fruitDB.findAll('Apple');
 
         await fruitDB.updateQ('Orange', 2, 2.00);
-
         await fruitDB.updateQ('Pear', 2, 5.00);
         await fruitDB.updateQ('Banana', 5, 5.00);
         await fruitDB.updateQ('Banana', 6, 5.00);
