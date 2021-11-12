@@ -13,22 +13,6 @@ module.exports = function FruitB(pool) {
         return data.rows
     }
 
-    async function getQ_Price() {
-        
-        var data = await pool.query("SELECT quantity, price FROM fruit_basket");
-        
-        return data.rows
-    }
-
-    // async function getPrice() {
-        
-    //     var data = await pool.query("SELECT price FROM fruit_basket");
-        
-    //     return data.rows
-    // }
-
-
-
     async function updateQ(fruit, qty, pr) {
 
         var fruits = await pool.query("SELECT * FROM fruit_basket WHERE fruit_name = $1", [fruit]);
@@ -51,6 +35,13 @@ module.exports = function FruitB(pool) {
 
     }
 
+    async function total_P() {
+
+        var fruits = await pool.query("SELECT sum(price) AS totals from fruit_basket");
+        return fruits.rows[0];
+
+    }
+
     async function sum_Quantity() {
 
         var fruits = await pool.query("SELECT sum(quantity) AS total from fruit_basket");
@@ -64,6 +55,7 @@ module.exports = function FruitB(pool) {
         getQ_Price,
         updateQ,
         total_Price,
+        total_P,
         sum_Quantity
     }
 }
