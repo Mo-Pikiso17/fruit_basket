@@ -1,5 +1,22 @@
 module.exports = function FruitB(pool) {
 
+
+    async function insertBasket(fruit, qty, pr) {
+
+        var fruits = await pool.query("SELECT * FROM fruit_basket WHERE fruit_name = $1", [fruit]);
+
+        if (fruits.rows.length == 0) {
+
+            return await pool.query("INSERT INTO fruit_basket (fruit_name,quantity,price) VALUES($1, $2, $3)", [fruit, qty, pr]);
+        } 
+
+    }
+
+    async function updateQ(fruit, qty) {
+        var updateFruit = await pool.query("UPDATE fruit_basket SET quantity =  quantity + $1 WHERE fruit_name = $2", [qty,fruit]);
+        return updateFruit.rows;
+}
+
     async function findAll() {
         
         var data = await pool.query("SELECT fruit_name FROM fruit_basket");
@@ -13,20 +30,7 @@ module.exports = function FruitB(pool) {
         return data.rows
     }
 
-    async function updateQ(fruit, qty, pr) {
-
-        var fruits = await pool.query("SELECT * FROM fruit_basket WHERE fruit_name = $1", [fruit]);
-
-        if (fruits.rows.length == 0) {
-
-            return await pool.query("INSERT INTO fruit_basket (fruit_name,quantity,price) VALUES($1, $2, $3)", [fruit, qty, pr]);
-
-        } else {
-            return await pool.query("UPDATE fruit_basket SET quantity =  quantity + $1 WHERE fruit_name = $2", [qty,fruit]);
-
-        }
-
-    }
+    
 
     async function total_Price(fruit) {
 
@@ -51,6 +55,7 @@ module.exports = function FruitB(pool) {
 
 
     return {
+        insertBasket,
         findAll,
         getQ_Price,
         updateQ,
